@@ -1,12 +1,14 @@
 import { shallowMount } from '@vue/test-utils'
+import { getUsers } from '@/components/mylib'
 import HelloWorld from '@/components/HelloWorld.vue'
 
+jest.mock('@/components/mylib')
+
 describe('HelloWorld.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'new message'
-    const wrapper = shallowMount(HelloWorld, {
-      propsData: { msg }
-    })
-    expect(wrapper.text()).toMatch(msg)
+  beforeEach(() => jest.resetAllMocks())
+
+  it('calls getUsers() on mount', () => {
+    shallowMount(HelloWorld)
+    expect(getUsers).toHaveBeenCalledTimes(1)
   })
 })

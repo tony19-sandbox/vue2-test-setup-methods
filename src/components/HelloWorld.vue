@@ -32,10 +32,21 @@
 </template>
 
 <script>
+import { onMounted } from '@vue/composition-api'
+import { getUsers } from './mylib'
+
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
+    msg: {
+      type: String,
+      default: 'hello world',
+    }
+  },
+  setup() {
+    onMounted(() => {
+      getUsers()
+    })
   }
 }
 </script>
